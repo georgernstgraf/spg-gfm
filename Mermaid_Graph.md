@@ -26,82 +26,35 @@ graph LR
 ```mermaid
 erDiagram
 
-  "OrderDetails" {
-    Int OrderDetailID "🗝️"
-    Int Quantity "❓"
+  "Airplane" {
+    String id "🗝️"
+    String name
     }
 
 
-  "categories" {
-    Int CategoryID "🗝️"
-    String CategoryName "❓"
-    String Description "❓"
+  "Flight" {
+    String id "🗝️"
+    DateTime when
     }
 
 
-  "customers" {
-    Int CustomerID "🗝️"
-    String CustomerName "❓"
-    String ContactName "❓"
-    String Address "❓"
-    String City "❓"
-    String PostalCode "❓"
-    String Country "❓"
+  "Airport" {
+    String id "🗝️"
+    String name
     }
 
 
-  "employees" {
-    Int EmployeeID "🗝️"
-    String LastName "❓"
-    String FirstName "❓"
-    DateTime BirthDate "❓"
-    String Photo "❓"
-    String Notes "❓"
+  "Passenger" {
+    String id "🗝️"
+    String email
+    String fullname
     }
 
-
-  "orders" {
-    Int OrderID "🗝️"
-    DateTime OrderDate "❓"
-    }
-
-
-  "products" {
-    Int ProductID "🗝️"
-    String ProductName "❓"
-    String Unit "❓"
-    Float Price "❓"
-    }
-
-
-  "shippers" {
-    Int ShipperID "🗝️"
-    String ShipperName "❓"
-    String Phone "❓"
-    }
-
-
-  "suppliers" {
-    Int SupplierID "🗝️"
-    String SupplierName "❓"
-    String ContactName "❓"
-    String Address "❓"
-    String City "❓"
-    String PostalCode "❓"
-    String Country "❓"
-    String Phone "❓"
-    }
-
-    "OrderDetails" o|--|o "products" : "products"
-    "OrderDetails" o|--|o "orders" : "orders"
-    "categories" o{--}o "products" : ""
-    "customers" o{--}o "orders" : ""
-    "employees" o{--}o "orders" : ""
-    "orders" o|--|o "shippers" : "shippers"
-    "orders" o|--|o "employees" : "employees"
-    "orders" o|--|o "customers" : "customers"
-    "products" o|--|o "suppliers" : "suppliers"
-    "products" o|--|o "categories" : "categories"
+    "Airplane" o{--}o "Flight" : ""
+    "Flight" o{--}o "Passenger" : ""
+    "Flight" o|--|| "Airport" : "fromAirport"
+    "Flight" o|--|| "Airport" : "toAirport"
+    "Flight" o|--|| "Airplane" : "Airplane"
 ```
 
 ## Mermaid: Undirected and Styled
