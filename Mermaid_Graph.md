@@ -7,12 +7,22 @@ render to an image (SVG/PNG) and embed it.
 ## Mermaid: Directed Graph
 
 ```mermaid
-graph TD
-  A[Start] --> B{Decision}
-  B -->|yes| C[Do X]
-  B -->|no| D[Do Y]
-  C --> E[End]
-  D --> E
+graph LR
+  A((A))
+  B((B))
+  C((C))
+  D((D))
+  E((E))
+  A --- B
+  A --- C
+  A --- D
+  A --- E
+  B --- C
+  B --- D
+  B --- E
+  C --- D
+  C --- E
+  D --- E
 ```
 
 ## Mermaid: Undirected and Styled

@@ -3,6 +3,11 @@
 ## Feature List
 
 - spenger logo
-- graphviz dot support
 - mermaid oder plantuml support
 - mathjax support
+
+## Installation
+
+```bash
+npm install -g @mermaid-js/mermaid-cli
+```
