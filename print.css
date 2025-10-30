@@ -1,0 +1,139 @@
+/* print.css */
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+@media print {
+
+  /* Grundlayout */
+  html,
+  body {
+    height: auto;
+    color: #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html,
+  body {
+    background: transparent !important;
+  }
+
+  /* Use a fixed pseudo-element on body */
+  body::after {
+    content: "";
+    position: fixed;
+    /* repeats on every printed page */
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background-image: url("logo/spg_logo.jpg");
+    background-repeat: no-repeat;
+    background-size: 300px 300px;
+    /* or contain */
+    background-position: top right;
+    /* Optional: some padding from edges */
+    transform: translate(-10mm, 10mm);
+    /* move left/down slightly for margins */
+    z-index: -1;
+    /* behind content; change to 999 if you want it on top */
+    opacity: 1;
+    /* adjust if you want a watermark effect */
+    pointer-events: none;
+  }
+
+  /* Platz für fixen Kopf/Fuß lassen */
+  body {
+    margin-top: 25mm;
+    margin-bottom: 20mm;
+  }
+
+  header.print-header,
+  footer.print-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    color: #333;
+  }
+
+  header.print-header {
+    top: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 5mm 10mm;
+  }
+
+  footer.print-footer {
+    bottom: 0;
+    border-top: 1px solid #ccc;
+    padding: 5mm 10mm;
+    /* Achtung: echte Seitenzahlen via CSS i. d. R. nicht möglich */
+  }
+
+  /* Umbrüche steuern */
+  .page-break,
+  .pagebreak {
+    break-before: page;
+    page-break-before: always;
+    /* Fallback */
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid-page;
+  }
+
+  p,
+  ul,
+  ol,
+  li,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Verhindere Zerreißen von zusammengehörenden Blöcken */
+  figure,
+  table,
+  pre,
+  .card,
+  .box,
+  .section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Tabellen anpassen */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead {
+    display: table-header-group;
+    /* Wiederholt Kopf pro Seite in vielen Browsern */
+  }
+
+  tr,
+  td,
+  th {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Links mit URL anzeigen */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    color: #555;
+    font-style: italic;
+  }
+
+  /* Unerwünschtes ausblenden */
+  .no-print,
+  nav,
+  .screen-only {
+    display: none !important;
+  }
+}
