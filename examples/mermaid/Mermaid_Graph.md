@@ -1,6 +1,44 @@
 # Example: Graphs in GFM (GitHub Flavored Markdown)
 
-## Mermaid: Undirected Graph
+## Mermaid UML
+
+```mermaid
+classDiagram
+direction LR
+  class User {
+    -UUID id
+    -string name
+    -string email
+    -Date createdAt
+    -Date updatedAt
+    +getId(): UUID
+    +setId(id: UUID): void
+    +getName(): string
+    +setName(name: string): void
+    +getEmail(): string
+    +setEmail(email: string): void
+    +getCreatedAt(): Date
+    +setCreatedAt(createdAt: Date): void
+    +getUpdatedAt(): Date
+    +setUpdatedAt(updatedAt: Date): void
+    +createPost(title: string, body: string): Post
+    +getPosts(): Post[]
+  }
+
+  class Post {
+    +UUID id
+    +UUID userId
+    +string title
+    +string body
+    +Date publishedAt
+    +boolean published
+    +publish(): void
+  }
+
+  User "1" --> "0..*" Post : authors
+```
+
+## Mermaid: K5
 
 ```mermaid
 graph LR
@@ -19,6 +57,55 @@ graph LR
   C --- D
   C --- E
   D --- E
+```
+
+## Mermaid: K8
+
+```mermaid
+graph LR
+  A((A))
+  B((B))
+  C((C))
+  D((D))
+  E((E))
+  F((F))
+  G((G))
+  H((H))
+
+  A --- B
+  A --- C
+  A --- D
+  A --- E
+  A --- F
+  A --- G
+  A --- H
+
+  B --- C
+  B --- D
+  B --- E
+  B --- F
+  B --- G
+  B --- H
+
+  C --- D
+  C --- E
+  C --- F
+  C --- G
+  C --- H
+
+  D --- E
+  D --- F
+  D --- G
+  D --- H
+
+  E --- F
+  E --- G
+  E --- H
+
+  F --- G
+  F --- H
+
+  G --- H
 ```
 
 ## Mermaid: ER Diagram (Generiert von Prisma)
@@ -50,8 +137,7 @@ erDiagram
     String fullname
     }
 
-    "Airplane" o{--}o "Flight" : ""
-    "Flight" o{--}o "Passenger" : ""
+    "Flight" o{--}o "Passenger" : "bookings"
     "Flight" o|--|| "Airport" : "fromAirport"
     "Flight" o|--|| "Airport" : "toAirport"
     "Flight" o|--|| "Airplane" : "Airplane"
