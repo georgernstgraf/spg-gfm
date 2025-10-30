@@ -4,6 +4,13 @@
     margin: 20mm;
 }
 
+@page :first {
+    background-image: url("file:///home/georg/gitm/spg-gfm/logo/spg_logo.jpg");
+    background-repeat: no-repeat;
+    background-size: 300px 108px;
+    background-position: calc(100% - 10mm) 10mm;
+}
+
 @media print {
 
     /* Grundlayout */
@@ -18,30 +25,6 @@
     html,
     body {
         background: transparent !important;
-    }
-
-    /* Use a fixed pseudo-element on body */
-    body::after {
-        content: "";
-        position: fixed;
-        /* repeats on every printed page */
-        top: 0;
-        right: 0;
-        width: 300px;
-        height: 108px;
-        background-image: url("file:///home/georg/gitm/spg-gfm/logo/spg_logo.jpg");
-        background-repeat: no-repeat;
-        background-size: 300px 108px;
-        /* or contain */
-        background-position: top right;
-        /* Optional: some padding from edges */
-        transform: translate(-10mm, 10mm);
-        /* move left/down slightly for margins */
-        z-index: -1;
-        /* behind content; change to 999 if you want it on top */
-        opacity: 1;
-        /* adjust if you want a watermark effect */
-        pointer-events: none;
     }
 
     /* Platz für fixen Kopf/Fuß lassen */
